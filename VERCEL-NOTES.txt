@@ -1,0 +1,3 @@
+Vercel: Framework Preset Other. public/ serves static files; api/intel.js is a Node serverless function.
+Configure TLW_ACCESS_CODE (private access) and LASTINTEL_API_TOKEN (provider bearer token) in Environment Variables. Do not set either as a NEXT_PUBLIC_ variable.
+Never share the lastintel token. This initial dashboard is for one private operator, not a multi-user production deployment.

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a101a"><meta name="description" content="TLW Intel — private Last War targeting dashboard, Warzone 2079">
+  <style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e6ecf5;background:#0a101a;font-synthesis:none}*{box-sizing:border-box}body{margin:0;background:#0a101a}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.46}a{color:#e6a33e}a:hover{color:#ffcb78}.hidden,[hidden]{display:none!important}.layout{min-height:100vh;display:flex}.sidebar{width:255px;min-width:255px;background:#0d1521;border-right:1px solid #263445;display:flex;flex-direction:column;padding:28px 15px 20px;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:11px;padding:2px 9px 28px}.brandmark{background:linear-gradient(150deg,#f5b647,#b86d25);color:#17202e;border-radius:10px;width:39px;height:39px;display:inline-flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 4px 26px #dc8d2c22}.brand strong{font-size:19px;letter-spacing:1px}.brand strong span,.mobile-brand span+span{color:#f3b44c}.brand small{display:block;font-size:9px;color:#788ca5;letter-spacing:2px;margin-top:4px}.server-chip{border:1px solid #304052;background:#182333;border-radius:12px;display:flex;align-items:center;gap:12px;padding:13px 15px;margin:0 7px 29px}.status-dot{height:8px;width:8px;background:#54d4a4;border-radius:50%;box-shadow:0 0 12px #54d4a466}.server-chip small{display:block;font-size:10px;letter-spacing:1.4px;color:#91a0b4;margin-bottom:4px}.server-chip b{font-size:17px}.server-chip b span{font-size:12px;color:#f2ab44}.nav-label{font-size:10px;letter-spacing:2px;color:#6e7f94;margin:0 14px 13px}.nav{width:100%;border:0;background:transparent;color:#99a9bd;display:flex;gap:14px;align-items:center;font-size:13px;border-radius:9px;margin:4px 0;text-align:left;padding:14px 15px}.nav span{font-size:21px;width:20px;text-align:center;line-height:1}.nav:hover{background:#1b2a3b;color:#fff}.nav.active{color:#ffc06b;background:#272b30;border:1px solid #7c5b35}.nav i{font-size:10px;font-style:normal;margin-left:auto;background:#283649;border-radius:6px;padding:2px 6px}.sidebar-foot{margin-top:auto;padding:0 11px}.line{height:1px;background:#263445;margin-bottom:20px}.sidebar-foot small,.sidebar-foot p{font-size:10px;color:#718398;letter-spacing:1px}.sidebar-foot p{font-size:12px;letter-spacing:0;color:#d5d9e0}.source{color:#6f8297;font-size:10px;margin-top:15px}.app{width:calc(100% - 255px);min-width:0}.topbar{height:72px;border-bottom:1px solid #273245;display:flex;align-items:center;justify-content:space-between;padding:0 38px;background:#0d1521;position:sticky;top:0;z-index:9}.crumb{font-size:11px;letter-spacing:2px;color:#acb5c5;font-weight:650}.crumb span{color:#687589;padding:0 10px}.top-actions{display:flex;align-items:center;gap:12px}.mode-label{font-size:10px;letter-spacing:1px;background:#342c23;color:#ffc270;border:1px solid #705534;border-radius:25px;padding:9px 12px;font-weight:750}.mode-label.live{background:#18372d;border-color:#2a765c;color:#70e9af}.btn{border:1px solid #354257;background:#162232;color:#dfebf6;border-radius:9px;padding:11px 15px;font-weight:650;font-size:13px;transition:background .15s,border .15s}.btn:hover{border-color:#a16a2b;background:#253147}.btn.primary{background:linear-gradient(150deg,#f1b24f,#dc852e);color:#1b1820;border-color:#efab4a}.btn.primary:hover{background:#ffd08b}.btn.outline{background:#172231;border-color:#4a5666;color:#e0e7ef}.btn.danger{color:#ffaaa5;border-color:#65363d;background:#2a1e26}.btn.full{width:100%;margin-top:14px}.btn.mini{padding:7px 13px}.icon-btn{border:1px solid #354257;color:#cfdae8;background:#192434;border-radius:9px;width:36px;height:36px;font-size:18px}.mobile-brand{display:none}main{max-width:1480px;margin:auto;padding:32px 38px 26px}.notice{border:1px solid #517395;border-radius:10px;padding:12px 17px;margin-bottom:17px;background:#142940;color:#bcdaf7;font-size:13px}.notice.warn{border-color:#a87a38;background:#2c251d;color:#ffce86}.notice.err{border-color:#925453;background:#352329;color:#ffd1d0}.hero{min-height:290px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;border:1px solid #493b2f;border-radius:16px;background:radial-gradient(ellipse at 88% 50%,#57402b66,transparent 50%),linear-gradient(115deg,#1d2635,#181e2a 60%,#2a251f);padding:34px 40px}.hero:before{content:'';pointer-events:none;position:absolute;inset:0;background-image:linear-gradient(#d39b2b0b 1px,transparent 1px),linear-gradient(90deg,#d39b2b0b 1px,transparent 1px);background-size:38px 38px}.hero-content{max-width:670px;z-index:1}.eyebrow{font-size:10px;letter-spacing:2.4px;font-weight:800;color:#e3a448;text-transform:uppercase}.hero h1,.page-top h1{font-size:39px;line-height:1.17;letter-spacing:-1.5px;font-weight:800;margin:17px 0}.hero em,.page-top em{font-style:normal;color:#efac48}.hero p{font-size:14px;line-height:1.7;max-width:500px;color:#aebdce}.hero-buttons{display:flex;gap:11px;flex-wrap:wrap;margin-top:24px}.hero-sigil{margin-right:23px;text-align:center;color:#f9c176;opacity:.8;flex-shrink:0}.sigil-ring{width:145px;height:145px;border-radius:50%;border:2px solid #b5793f;display:grid;place-items:center;outline:1px solid #c8994560;outline-offset:10px;background:radial-gradient(circle,#c6943e33,transparent 65%)}.sigil-ring span{font-size:100px;line-height:1;color:#f3ac48;text-shadow:0 0 30px #e2914288}.hero-sigil small{font-size:10px;display:block;letter-spacing:2px;margin-top:19px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:18px 0 35px}.stat{background:#121d2b;border:1px solid #2b3a4c;border-radius:12px;padding:19px 21px}.stat span{font-size:10px;color:#91a0b4;letter-spacing:1.35px;font-weight:750}.stat strong{display:block;font-size:29px;margin:8px 0 3px;line-height:1.15}.stat small{font-size:11px;color:#8294aa}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}.section-head h2{font-size:22px;letter-spacing:-.5px;margin:6px 0 0}.muted{color:#7d8da2!important}.section-head>.muted{font-size:12px}.feature-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.feature{border:1px solid #29384a;background:#131e2c;border-radius:14px;padding:23px;text-align:left;color:#e5edf5;display:flex;flex-direction:column;align-items:flex-start;min-height:242px}.feature:hover{background:#1b2a3b;border-color:#be914a}.feature-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:11px;font-size:29px;margin-bottom:15px}.feature-icon.amber{background:#4c3523;color:#ffc06b}.feature-icon.blue{background:#1e3949;color:#7bd5f3}.feature-icon.green{background:#204238;color:#6adeb1}.feature-tag{color:#8599b1;letter-spacing:1.3px;font-size:10px;font-weight:800}.feature b{font-size:18px;margin:9px 0}.feature small{font-size:12px;color:#8c9db2;line-height:1.6}.feature-link{color:#f2b451;font-size:12px;margin-top:auto;padding-top:15px;font-weight:700}.info-banner{display:flex;gap:12px;margin-top:21px;border:1px solid #344b60;background:#142538;padding:17px;border-radius:10px;color:#8fc7fa}.info-banner>span{font-size:22px}.info-banner strong{font-size:13px;color:#b8d7f9}.info-banner p{margin:5px 0 0;line-height:1.6;font-size:12px;color:#8fa6bc}.page-top{display:flex;align-items:center;justify-content:space-between;margin:10px 0 28px}.page-top h1{font-size:38px;margin:11px 0}.page-top p{font-size:13px;color:#94a5ba;line-height:1.65;max-width:650px}.page-icon{width:75px;height:75px;border:1px solid #55472f;border-radius:17px;display:grid;place-items:center;font-size:45px;color:#e6a443;background:#2d2928}.panel{border:1px solid #2c3b4f;background:#121d2b;border-radius:13px;padding:23px;margin-bottom:17px;min-width:0}.panel-title{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #2d3b4c;margin-bottom:18px;padding-bottom:17px}.panel-title b{font-size:15px}.tag{font-size:10px;letter-spacing:.7px;background:#243649;border:1px solid #2d4b63;color:#a9c7dd;border-radius:7px;padding:6px 8px;white-space:nowrap}.tag.gold{color:#eeb45e;background:#3b3124;border-color:#6e5432}.search-form{display:flex;align-items:end;gap:12px}.field{display:flex;flex-direction:column;gap:8px;min-width:0;margin-bottom:8px}.field.grow{flex:1}.field.smallfield{width:175px}.field small{font-size:10px;font-weight:750;letter-spacing:1px;color:#8c9bb0}.field input,.field select,.saved-tools input{width:100%;border-radius:8px;background:#0b1420;border:1px solid #38485b;color:#e4edf6;padding:13px;outline:0;font-size:13px}.field input:focus,.field select:focus,.saved-tools input:focus{border-color:#e0a246}.field input::placeholder,.saved-tools input::placeholder{color:#60748b}.search-form .action{height:44px;margin-bottom:8px}.helper{font-size:11px;color:#8093a8;line-height:1.6;margin:12px 0 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:17px}.two-col>.panel{margin:0}.result-list{display:flex;flex-direction:column;gap:8px}.empty-state{min-height:167px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8b9aae;text-align:center}.empty-state p{font-size:13px}.empty-icon{font-size:34px;color:#6d8499}.search-row,.target-row{width:100%;border:1px solid #293c50;border-radius:10px;background:#101a28;padding:13px;display:flex;justify-content:space-between;gap:10px;align-items:center;color:#f1f3f7;text-align:left}.search-row:hover,.target-row:hover{border-color:#a87738;background:#20293a}.search-row.selected{border-color:#df9841;background:#2f2b2a}.row-title{font-size:13px;font-weight:750}.row-sub{font-size:11px;color:#8c9db1;margin-top:5px}.row-right{text-align:right;min-width:65px}.row-right b{font-size:12px;color:#dfb56e}.row-right small{display:block;color:#8294aa;font-size:10px;margin-top:5px}.selected-empty{background:#101a28;border:1px dashed #39495c;padding:19px;border-radius:9px;color:#8293a7;font-size:13px;margin-bottom:18px}.selected-box{background:#172638;border:1px solid #43617b;padding:15px;border-radius:9px;margin-bottom:18px}.selected-box strong{display:block;margin-bottom:6px}.selected-box small{color:#95b3d0}.scan-result{margin-top:15px}.scan-result .success{border:1px solid #3d785a;background:#1c382b;border-radius:8px;padding:13px;color:#ace4bd;font-size:12px}.result-note{border:1px solid #526c83;background:#1b2a3b;color:#bbd6ed;border-radius:8px;padding:13px;line-height:1.6;font-size:12px}.reward-info{color:#8395ab;font-size:12px;margin:8px 0}.rewards{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.reward{padding:18px 7px;min-height:133px;background:#111c2a;border:1px solid #334155;border-radius:11px;color:#a9b7c9;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:12px;text-align:center}.reward:hover{border-color:#9b7951}.reward.active{border:1px solid #e4a346;background:#2f2c28;color:#fff0d1}.reward>span{font-size:31px}.reward>small{font-size:11px;line-height:1.45}.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.scope{display:flex;gap:12px;border:1px solid #34455a;border-radius:10px;padding:16px;background:#0e1927;cursor:pointer}.scope.active{border-color:#db9d4b;background:#2b2926}.scope input{accent-color:#e1a647;align-self:start}.scope strong{font-size:13px}.scope p{font-size:11px;color:#8b9db1;line-height:1.55;margin-bottom:0}.scope-summary{display:flex;justify-content:space-between;background:#0d1723;border:1px solid #344255;border-radius:10px;padding:15px;margin-top:18px;gap:18px}.scope-summary small{font-size:10px;letter-spacing:1px;color:#869bb3;display:block;margin-bottom:7px}.scope-summary b{font-size:13px}.scope-summary>div:last-child{text-align:right}.target-row{align-items:flex-start}.target-badge{color:#fac675;background:#483421;border:1px solid #78532a;border-radius:7px;padding:5px 7px;font-size:10px}.target-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}.target-meta span{font-size:10px;color:#8ba1b9}.target-actions{display:flex;gap:7px;margin-top:9px}.smallbtn{border:1px solid #46607a;background:#243448;border-radius:7px;color:#bddaf0;padding:7px 10px;font-size:11px}.smallbtn:hover{background:#34516f}.smallbtn.orange{background:#4d3723;color:#f9c376;border-color:#86613e}.map-panel{padding:0;overflow:hidden}.map-toolbar{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #2a3d4f}.map-heading b{font-size:12px;letter-spacing:1.3px}.map-heading span{font-size:11px;color:#8193a9;margin-left:9px}.map-controls{display:flex;gap:8px}.map-wrap{position:relative;width:100%;height:430px;background:#0a1725;touch-action:none;overflow:hidden}.map-wrap canvas{width:100%;height:100%;display:block;touch-action:none}.map-watermark{position:absolute;top:17px;left:20px;pointer-events:none;font-size:10px;letter-spacing:1.2px;font-weight:750;color:#9bb6c5}.map-watermark small{display:block;font-size:9px;color:#f9b85b;letter-spacing:1.5px;margin-top:6px}.map-legend{padding:14px 20px;display:flex;gap:20px;flex-wrap:wrap;color:#a1aec0;border-top:1px solid #314052;font-size:11px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.dot.amber{background:#efaa4a}.dot.red{background:#f07875}.dot.green{background:#68e0b0}.dot.teal{background:#68bde8}.map-selection{border-top:1px solid #26394b;padding:16px 21px;font-size:12px;line-height:1.7}.minor{font-size:12px;color:#8da0b4;line-height:1.8}.minor code{font-size:11px;color:#e5a950;overflow-wrap:anywhere}.button-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.upload{cursor:pointer}.manual-form .inline-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.saved-tools{display:flex;gap:12px;margin:0 0 20px}.saved-tools input{flex:1;min-width:0}.saved-card{border:1px solid #2e4253;border-radius:10px;padding:15px;background:#0e1825;display:flex;align-items:center;justify-content:space-between;gap:15px}.saved-card h4{margin:0;font-size:14px}.saved-card p{font-size:11px;color:#91a4b9;margin:7px 0}.saved-actions{display:flex;gap:7px;flex-wrap:wrap}footer{color:#687d91;border-top:1px solid #24354a;margin-top:40px;padding:21px 0;font-size:10px;letter-spacing:.5px}footer a{color:#91abbf}.bottomnav{display:none}.modal-root{position:fixed;inset:0;background:#05090dbb;display:flex;align-items:center;justify-content:center;z-index:100;padding:18px}.modal{background:#172332;border:1px solid #556070;border-radius:15px;box-shadow:0 20px 80px #000a;max-width:480px;width:100%;padding:24px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0;font-size:19px}.close{background:none;border:0;color:#a7b5c5;font-size:25px}.modal>p{color:#b4c1d0;font-size:13px;line-height:1.65}.modal-buttons{display:flex;justify-content:end;gap:9px;margin-top:22px}.modal-extra{color:#b9cbd9;font-size:12px}.modal-extra label{display:block;margin:10px 0}.modal-extra select{width:100%;padding:11px;background:#0e1724;border:1px solid #405367;color:#eaf2fb;border-radius:8px}.modal-extra .sensitive{border-left:3px solid #e3a54b;padding:8px 12px;background:#3a3025;line-height:1.6}.modal-extra .sensitive b{color:#ffca7c}
+@media(max-width:1050px){.sidebar{width:220px;min-width:220px}.app{width:calc(100% - 220px)}.topbar{padding:0 23px}main{padding:27px 23px}.hero{padding:30px}.rewards{grid-template-columns:repeat(3,1fr)}.hero-sigil{margin-right:0}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.sidebar{display:none}.app{width:100%}.topbar{height:62px;padding:0 17px}.mobile-brand{display:flex;align-items:center;gap:9px;font-size:15px;letter-spacing:1px}.mobile-brand .brandmark{width:31px;height:31px;font-size:24px}.mobile-brand b span{color:#f1b551}.crumb{display:none}.mode-btn{display:none}.top-actions{gap:8px}.mode-label{padding:7px 9px;font-size:9px}.icon-btn{height:33px;width:33px}.bottomnav{position:fixed;z-index:10;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:#101c2b;border-top:1px solid #344458;padding-bottom:env(safe-area-inset-bottom)}.bottomnav button{background:none;border:0;color:#8295ac;padding:10px 4px 8px;display:flex;flex-direction:column;gap:3px;align-items:center;font-size:10px}.bottomnav button span{font-size:22px;line-height:1.1}.bottomnav button.active{color:#ffbd69}main{padding:18px 15px 95px}.hero{min-height:300px;padding:25px}.hero h1{font-size:34px}.hero-sigil{display:none}.hero p{font-size:12px}.stats{margin:13px 0 30px;gap:9px}.stat{padding:16px}.stat strong{font-size:24px}.stat span{font-size:9px}.feature-cards{grid-template-columns:1fr;gap:10px}.feature{min-height:0;padding:19px}.feature-icon{margin-bottom:10px}.section-head>.muted{display:none}.page-top h1{font-size:31px}.page-icon{width:54px;height:54px;font-size:32px}.panel{padding:17px}.two-col{grid-template-columns:1fr}.search-form{flex-wrap:wrap}.search-form .field.grow{flex:1 1 100%}.search-form .smallfield{flex:1}.search-form .action{margin-bottom:8px}.rewards{grid-template-columns:repeat(3,1fr);gap:8px}.reward{min-height:113px;padding:11px 5px}.reward>span{font-size:26px}.reward>small{font-size:10px}.scope-grid{grid-template-columns:1fr}.map-wrap{height:380px}.saved-tools{flex-direction:column}.saved-card{align-items:start;flex-direction:column}.saved-actions{width:100%}.map-heading span{display:block;margin:4px 0 0}.modal{padding:20px}footer{font-size:9px;line-height:1.65}}
+@media(max-width:390px){.rewards{grid-template-columns:repeat(2,1fr)}.hero-buttons .btn{padding:10px;font-size:11px}.map-controls .btn{padding:7px 9px}.mode-label{font-size:8px}.topbar{padding:0 12px}}
+
+</style><title>TLW Intel · #2079</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="brandmark">✦</div><div><strong>TLW<span>INTEL</span></strong><small>TLW ALLIANCE</small></div></div>
+      <div class="server-chip"><span class="status-dot"></span><div><small>HOME WARZONE</small><b>#2079 <span>· TLW</span></b></div></div>
+      <div class="nav-label">COMMAND CENTER</div>
+      <nav id="desktop-nav" aria-label="Primary">
+        <button class="nav active" data-page="overview"><span>◫</span> Overview</button>
+        <button class="nav" data-page="commander"><span>⌖</span> Commander Locator</button>
+        <button class="nav" data-page="tasks"><span>✧</span> Secret Task Finder</button>
+        <button class="nav" data-page="map"><span>▦</span> Tactical Map</button>
+        <button class="nav" data-page="saved"><span>⚑</span> Saved Targets <i id="nav-count">0</i></button>
+      </nav>
+      <div class="sidebar-foot"><div class="line"></div><small>FOR TLW ALLIANCE OPERATIONS</small><p>Scout smart. Strike together.</p><div class="source">Data: <a target="_blank" rel="noopener" href="https://lastintel.io">lastintel.io</a> · independent project</div></div>
+    </aside>
+    <div class="app">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brandmark">✦</span><b>TLW <span>INTEL</span></b></div>
+        <div class="crumb" id="crumb">OPERATIONS <span>/</span> OVERVIEW</div>
+        <div class="top-actions">
+          <div id="mode-label" class="mode-label">◉ DEMO DATA</div>
+          <button id="toggle-mode" class="btn mode-btn" title="Switch between sample and live data">Live needs server</button>
+          <button id="settings-open" class="icon-btn" aria-label="Open settings" title="Settings">⚙</button>
+        </div>
+      </header>
+      <main>
+        <div id="notice" class="notice" hidden></div>
+        <section class="page" id="page-overview">
+          <div class="hero"><div class="hero-content"><div class="eyebrow">SERVER #2079 · TLW COMMAND CENTER</div><h1>Own the map.<br><em>Control the hunt.</em></h1><p>Search commander bases, discover plunderable missions, and prepare targets for TLW alliance.</p><div class="hero-buttons"><button class="btn primary" data-go="commander">⌖ Locate commander</button><button class="btn outline" data-go="tasks">✧ Find secret tasks</button></div></div><div class="hero-sigil"><div class="sigil-ring"><span>✦</span></div><small>TLW ALLIANCE</small></div></div>
+          <div class="stats">
+            <div class="stat"><span>HOME WARZONE</span><strong>#2079</strong><small>TLW territory</small></div>
+            <div class="stat"><span>DATA SOURCE</span><strong id="stat-source">Demo</strong><small id="stat-source-sub">Sample dataset only</small></div>
+            <div class="stat"><span>YOUR TARGETS</span><strong id="stat-targets">0</strong><small>Saved on this device</small></div>
+            <div class="stat"><span>SCAN CREDITS</span><strong id="stat-credits">—</strong><small id="stat-credit-sub">Connect provider to check</small></div>
+          </div>
+          <div class="section-head"><div><div class="eyebrow">TOOLKIT</div><h2>Tactical operations</h2></div><span class="muted">One place for TLW scouting</span></div>
+          <div class="feature-cards">
+            <button class="feature" data-go="commander"><span class="feature-icon amber">⌖</span><span class="feature-tag">PLAYER INTEL</span><b>Commander Locator</b><small>Find commanders and request their current map positions.</small><span class="feature-link">Open locator →</span></button>
+            <button class="feature" data-go="tasks"><span class="feature-icon blue">✦</span><span class="feature-tag">RESOURCE INTEL</span><b>Secret Task Finder</b><small>Choose rewards and target warzones for plunderable missions.</small><span class="feature-link">Find missions →</span></button>
+            <button class="feature" data-go="map"><span class="feature-icon green">▦</span><span class="feature-tag">FIELD MAP</span><b>Tactical Map</b><small>Explore saved and imported coordinates with a mobile-friendly grid.</small><span class="feature-link">View map →</span></button>
+          </div>
+          <div class="info-banner"><span>ⓘ</span><div><strong>Scans require an authorized data connection.</strong><p>Read-only commander searches use lastintel's public API. Live scans spend credits, and the provider does not supply raw map data through its scan endpoint. Demo targets are fictional.</p></div></div>
+        </section>
+
+        <section class="page hidden" id="page-commander">
+          <div class="page-top"><div><div class="eyebrow">01 / TARGET ACQUISITION</div><h1>Commander <em>Locator</em></h1><p>Identify commanders by name or alliance. Locating their actual base is a separate credit-charged search.</p></div><div class="page-icon">⌖</div></div>
+          <div class="panel"><div class="panel-title"><b>Search commander or alliance</b><span class="tag">FREE INDEX SEARCH</span></div>
+            <form id="search-form" class="search-form"><label class="field grow"><small>COMMANDER NAME / ALLIANCE</small><input id="search-query" required minlength="2" maxlength="200" placeholder="e.g. commander name or [TAG]" autocomplete="off"></label><label class="field smallfield"><small>WARZONE (OPTIONAL)</small><input id="search-zone" placeholder="All warzones" inputmode="numeric"></label><button class="btn primary action" type="submit" id="search-button">⌕ Search</button></form>
+            <div class="helper">Search is free. Map positions are not included in index results.</div></div>
+          <div class="two-col"><div class="panel"><div class="panel-title"><b>Commander results</b><span class="tag" id="search-count">0 found</span></div><div id="search-results" class="result-list empty-state"><div class="empty-icon">⌕</div><p>Search for a player to begin.</p></div></div>
+            <div class="panel"><div class="panel-title"><b>Locate selected commander</b><span class="tag gold">CREDITED SCAN</span></div><div id="selected-commander" class="selected-empty">Select a commander from the results.</div><label class="field"><small>WARZONES TO SEARCH (MAX 10)</small><input id="locate-zones" value="2079" placeholder="2079,2064" inputmode="text"></label><div class="helper">Include the player's home or season-group warzones. Each searched warzone may be charged.</div><button id="locate-button" class="btn primary full" disabled>⌖ Locate base · confirm credits</button><div id="locate-result" class="scan-result"></div></div>
+          </div>
+        </section>
+
+        <section class="page hidden" id="page-tasks">
+          <div class="page-top"><div><div class="eyebrow">02 / RESOURCE ACQUISITION</div><h1>Secret Task <em>Finder</em></h1><p>Find plunder targets carrying rewards you actually want. Search selected warzones or let the provider choose.</p></div><div class="page-icon">✧</div></div>
+          <div class="panel"><div class="panel-title"><b>Choose your reward</b><span class="tag">FILTER MISSION REWARDS</span></div><div id="reward-options" class="rewards"></div><div class="helper" id="reward-helper">Demo filters fictional targets. In live mode, provider-supported reward codes are used where available.</div></div>
+          <div class="panel"><div class="panel-title"><b>Search scope</b><span class="tag gold">SPENDS SCAN CREDITS</span></div><div class="scope-grid"><label class="scope active" id="scope-auto"><input type="radio" name="scope" value="auto" checked><div><strong>◎ Around my warzone</strong><p>Provider automatically picks warzones. Recommended for resource hunting.</p></div></label><label class="scope" id="scope-custom"><input type="radio" name="scope" value="custom"><div><strong>⌗ Choose warzones</strong><p>Scan up to three warzones of your choice.</p></div></label></div><label id="task-zone-wrap" class="field hidden" style="margin-top:18px"><small>WARZONES · MAX THREE</small><input id="task-zones" placeholder="e.g. 2064, 2078, 2080" inputmode="text"></label><div class="scope-summary"><div><small>SCAN ESTIMATE</small><b id="task-cost">Provider quote required</b></div><div><small>ACCOUNT</small><b id="task-balance">Not connected</b></div></div><button id="find-tasks" class="btn primary full">✧ Find secret tasks · confirm credits</button></div>
+          <div class="panel"><div class="panel-title"><b>Mission results</b><span id="task-count" class="tag">0 targets</span></div><div id="task-results" class="result-list empty-state"><div class="empty-icon">✧</div><p>Choose a reward and run a search.</p></div></div>
+        </section>
+
+        <section class="page hidden" id="page-map">
+          <div class="page-top"><div><div class="eyebrow">03 / FIELD INTELLIGENCE</div><h1>Tactical <em>Map</em></h1><p>Visualize user-supplied coordinates and targets. This is not a live scanned warzone map.</p></div><div class="page-icon">▦</div></div>
+          <div class="panel map-panel"><div class="map-toolbar"><div class="map-heading"><b>WARZONE GRID</b><span id="map-points">0 mapped locations</span></div><div class="map-controls"><select id="map-zone-filter" aria-label="Map warzone" class="btn mini"><option value="2079">#2079</option></select><button class="btn mini" id="zoom-out">−</button><button class="btn mini" id="zoom-in">+</button><button class="btn mini" id="zoom-reset">Reset</button></div></div><div class="map-wrap"><canvas id="map-canvas" aria-label="Interactive map of saved targets"></canvas><div class="map-watermark"><span id="map-zone-name">#2079 / TLW FIELD MAP</span> <small id="map-state">SAMPLE DATA</small></div></div><div class="map-legend"><span><i class="dot amber"></i> Secret tasks</span><span><i class="dot red"></i> Enemy bases</span><span><i class="dot green"></i> Friendly bases</span><span><i class="dot teal"></i> Other</span></div><div id="map-selected" class="map-selection muted">Tap a point to view coordinates, or import a CSV.</div></div>
+          <div class="two-col"><div class="panel"><div class="panel-title"><b>Import a coordinate list</b><span class="tag">USER DATA ONLY</span></div><p class="minor">Import an independently collected CSV with these columns: <code>name,alliance,warzone,x,y,kind,reward,notes</code>. Data stays in this browser.</p><div class="button-row"><label class="btn outline upload">⇧ Import CSV<input type="file" id="csv-import" accept=".csv,text/csv" hidden></label><button id="csv-template" class="btn outline">Get CSV template</button></div><div id="import-status" class="helper"></div></div>
+            <div class="panel"><div class="panel-title"><b>Add a coordinate</b><span class="tag">LOCAL TARGET</span></div><form id="manual-form" class="manual-form"><label class="field"><small>NAME</small><input id="manual-name" placeholder="Target / mission name" required></label><div class="inline-fields"><label class="field"><small>X</small><input id="manual-x" type="number" min="0" max="10000" required></label><label class="field"><small>Y</small><input id="manual-y" type="number" min="0" max="10000" required></label></div><div class="inline-fields"><label class="field"><small>WARZONE</small><input id="manual-zone" type="number" value="2079" min="1" required></label><label class="field"><small>KIND</small><select id="manual-kind"><option value="base">Enemy base</option><option value="task">Secret task</option><option value="friendly">Friendly base</option><option value="other">Other</option></select></label></div><button class="btn primary full" type="submit">+ Save coordinate</button></form></div></div>
+        </section>
+        <section class="page hidden" id="page-saved">
+          <div class="page-top"><div><div class="eyebrow">04 / MISSION BOARD</div><h1>Saved <em>Targets</em></h1><p>Your own coordinates and CSV imports, saved on this device. No alliance-wide sync yet.</p></div><div class="page-icon">⚑</div></div>
+          <div class="panel"><div class="panel-title"><b>My target list</b><span id="saved-count" class="tag">0 saved</span></div><div class="saved-tools"><input id="saved-filter" placeholder="Search your targets by name, alliance or coordinate"><button id="clear-saved" class="btn danger">Clear local targets</button></div><div id="saved-list" class="result-list"></div></div>
+        </section>
+        <footer>TLW INTEL · PRIVATE SCOUTING INTERFACE · <a href="https://lastintel.io" rel="noopener" target="_blank">Data: lastintel.io</a> · Not affiliated with Last War: Survival or lastintel</footer>
+      </main>
+      <nav class="bottomnav" aria-label="Mobile navigation"><button class="active" data-page="overview"><span>◫</span>Home</button><button data-page="commander"><span>⌖</span>Bases</button><button data-page="tasks"><span>✧</span>Tasks</button><button data-page="map"><span>▦</span>Map</button><button data-page="saved"><span>⚑</span>Saved</button></nav>
+    </div>
+  </div>
+  <div id="modal-root" class="modal-root hidden"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h3 id="modal-title">Confirm action</h3><button id="modal-close" class="close" aria-label="Close">×</button></div><p id="modal-text"></p><div id="modal-extra"></div><div class="modal-buttons"><button id="modal-cancel" class="btn outline">Cancel</button><button id="modal-ok" class="btn primary">Confirm</button></div></div></div>
+  <script>
+/* TLW Intel client — demo + documented lastintel MCP via private Node API.
+   Provider results are shown to the current operator only and never exported. */
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ui={
+  mode:'demo',page:'overview',tokenConfigured:false,account:null,jobs:[],
+  selected:null,search:[],taskResults:[],lastLocate:null,liveMap:[],
+  saved:loadSaved(),reward:'all',scope:'auto',modalAction:null,
+  map:{zoom:1,centerX:500,centerY:500,drag:null,extent:1000,hover:null}
+};
+const REWARDS=[
+ {id:'all',icon:'◎',label:'All rewards'},
+ {id:'Upgrade Ore',icon:'🔷',label:'Upgrade Ore'},
+ {id:'Skill Medal',icon:'🏅',label:'Skill Medal'},
+ {id:'5m Construction Speed-up',icon:'⏩',label:'Construction 5m'},
+ {id:'5m Research Speed-up',icon:'🧪',label:'Research 5m'},
+ {id:'5m Training Speed-up',icon:'⚔️',label:'Training 5m'},
+ {id:'5-min Speed-up Chest',icon:'🎁',label:'Speed-up Chest'}
+];
+const DEMO_COMMANDERS=[
+ {id:'sample_01',type:'commander',name:'SAMPLE · Iron Ranger',tag:'DEMO',serverId:2079,power:201800000,x:246,y:943},
+ {id:'sample_02',type:'commander',name:'SAMPLE · Fire Scout',tag:'TEST',serverId:2079,power:160100000,x:731,y:390},
+ {id:'sample_03',type:'commander',name:'SAMPLE · Night Hawk',tag:'TEST',serverId:2064,power:118600000,x:551,y:712},
+ {id:'sample_04',type:'commander',name:'SAMPLE · Silver Fox',tag:'DEMO',serverId:2079,power:177100000,x:188,y:582}
+];
+const DEMO_TASKS=[
+ {id:'task_demo_1',name:'SAMPLE · Golden Recovery',alliance:'DEMO',warzone:2080,x:371,y:592,reward:'Upgrade Ore',amount:'12 units',kind:'task'},
+ {id:'task_demo_2',name:'SAMPLE · Elite Mission',alliance:'DEMO',warzone:2064,x:726,y:370,reward:'Skill Medal',amount:'6 medals',kind:'task'},
+ {id:'task_demo_3',name:'SAMPLE · Supply Chase',alliance:'TEST',warzone:2078,x:472,y:241,reward:'5m Research Speed-up',amount:'16 packs',kind:'task'},
+ {id:'task_demo_4',name:'SAMPLE · Victory Reserve',alliance:'TEST',warzone:2079,x:612,y:648,reward:'Upgrade Ore',amount:'8 units',kind:'task'},
+ {id:'task_demo_5',name:'SAMPLE · Drill Mission',alliance:'DEMO',warzone:2079,x:119,y:208,reward:'5m Training Speed-up',amount:'9 packs',kind:'task'},
+ {id:'task_demo_6',name:'SAMPLE · Construction Cache',alliance:'TEST',warzone:2079,x:818,y:719,reward:'5m Construction Speed-up',amount:'12 packs',kind:'task'}
+];
+function loadSaved(){ try {const x=JSON.parse(localStorage.getItem('tlw-targets-v1')||'[]');return Array.isArray(x)?x.slice(0,5000):[]}catch{return []} }
+function saveLocal(){localStorage.setItem('tlw-targets-v1',JSON.stringify(ui.saved));renderSaved();renderMap();refreshStats()}
+function notify(message,type='info'){
+ const e=$('notice');e.textContent=message;e.className='notice '+(type==='error'?'err':type==='warning'?'warn':'');e.hidden=false;
+ e.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function clearNotice(){$('notice').hidden=true}
+async function api(action,params={}){
+ const headers={'Content-Type':'application/json'};
+ const key=sessionStorage.getItem('tlw-access-code');if(key)headers['X-TLW-Access-Code']=key;
+ const res=await fetch('/api/intel',{method:'POST',headers,body:JSON.stringify({action,...params}),cache:'no-store'});
+ let data;try{data=await res.json()}catch{throw new Error('Server returned an unexpected response.')}
+ if(!res.ok||!data.ok)throw new Error(data.error||`Server error ${res.status}`);
+ return data.data;
+}
+function go(page){
+ if(!['overview','commander','tasks','map','saved'].includes(page))return;
+ ui.page=page;clearNotice();document.querySelectorAll('.page').forEach(el=>el.classList.toggle('hidden',el.id!=='page-'+page));
+ document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+ $('crumb').innerHTML='OPERATIONS <span>/</span> '+({overview:'OVERVIEW',commander:'COMMANDER LOCATOR',tasks:'SECRET TASK FINDER',map:'TACTICAL MAP',saved:'SAVED TARGETS'})[page];
+ window.scrollTo({top:0,behavior:'auto'});if(page==='map')setTimeout(()=>{updateMapZones();drawMap()},50);if(page==='saved')renderSaved();
+}
+function refreshStats(){
+ $('stat-targets').textContent=ui.saved.length;$('nav-count').textContent=ui.saved.length;
+ $('stat-source').textContent=ui.mode==='demo'?'Demo':'Live';$('stat-source-sub').textContent=ui.mode==='demo'?'Fictional test data only':'Provider read / user targets';
+ $('stat-credits').textContent=ui.mode==='live'?(ui.account?.credits??'—'):'—';
+ $('stat-credit-sub').textContent=ui.mode==='demo'?'Switch to live to check':ui.account?'Current provider balance':'Connect token to view';
+ $('task-balance').textContent=ui.mode==='demo'?'Demo mode':ui.account?`${ui.account.credits} credits`:'Token not configured';
+ $('mode-label').textContent=ui.mode==='demo'?'◉ DEMO DATA':'◉ LIVE PROVIDER';
+ $('mode-label').classList.toggle('live',ui.mode==='live');$('toggle-mode').textContent=ui.mode==='demo'?'Switch to live':'Use demo';
+ $('map-state').textContent=ui.mode==='demo'?'SAMPLE DATA':'LOCAL / SESSION ONLY';
+ updateCost();
+}
+async function switchMode(){if(location.protocol==='file:'){notify('Live searches require the server project and a permitted provider API connection. This file is a demo only.','warning');return}
+ ui.mode=ui.mode==='demo'?'live':'demo';ui.search=[];ui.selected=null;ui.lastLocate=null;ui.taskResults=[];ui.liveMap=[];
+ renderSearch();renderSelected();renderTasks();refreshStats();renderMap();
+ if(ui.mode==='live'){
+  notify('Live mode enabled. Index search is free; paid scans require your own lastintel server API token and provider credits.','warning');
+  await checkConnection();
+ } else notify('Demo mode: all sample players, task rewards, positions and coordinates are fictional.');
+}
+async function checkConnection(){
+ try {
+  const health=await api('health');ui.tokenConfigured=health.tokenConfigured;
+  if(health.tokenConfigured){
+   try{ const data=await api('account');ui.account=data.account||null;ui.jobs=data.jobs||[];
+      notify('Provider account connected. Paid searches require your confirmation before any credits are spent.');
+   }catch(e){notify('Provider token found, but account access failed: '+e.message,'warning')}
+  } else {ui.account=null;ui.jobs=[];notify('No live scan token is configured on this server. Free commander index searches may still work. Configure LASTINTEL_API_TOKEN to enable paid searches.','warning')}
+ }catch(e){notify('Connection check failed: '+e.message,'error')}
+ refreshStats();renderRewards();
+}
+function fmtPower(n){const v=Number(n);return Number.isFinite(v)?v>=1e9?(v/1e9).toFixed(2)+'B':v>=1e6?(v/1e6).toFixed(1)+'M':v.toLocaleString():'—'}
+function renderSearch(){
+ $('search-count').textContent=ui.search.length+' found';
+ const el=$('search-results');if(!ui.search.length){el.className='result-list empty-state';el.innerHTML='<div class="empty-icon">⌕</div><p>No commander results yet.</p>';return}
+ el.className='result-list';
+ el.innerHTML=ui.search.map((o,i)=>`<button class="search-row ${ui.selected?.id===o.id?'selected':''}" data-select="${i}"><div><div class="row-title">${esc(o.tag?'['+o.tag+'] ':'')}${esc(o.name)}</div><div class="row-sub">${esc(o.type||'commander')} · Warzone #${esc(o.serverId??'?')} ${ui.mode==='demo'?'· SAMPLE':''}</div></div><div class="row-right"><b>${fmtPower(o.power)}</b><small>POWER</small></div></button>`).join('');
+ el.querySelectorAll('[data-select]').forEach(btn=>btn.addEventListener('click',()=>{
+  const o=ui.search[Number(btn.dataset.select)];if(o.type==='alliance'){notify('Choose a commander row, not an alliance, to locate a base.','warning');return}
+  ui.selected=o;if(o.serverId)$('locate-zones').value=String(o.serverId);renderSearch();renderSelected();
+ }));
+}
+function renderSelected(){
+ const o=ui.selected;
+ $('selected-commander').className=o?'selected-box':'selected-empty';
+ $('selected-commander').innerHTML=o?`<strong>${esc(o.name)}</strong><small>${esc(o.tag?'['+o.tag+']':'')} · Home #${esc(o.serverId)} · ${fmtPower(o.power)} power ${ui.mode==='demo'?'· DEMO':''}</small>`:'Select a commander from the results.';
+ $('locate-button').disabled=!o;
+ $('locate-result').innerHTML='';
+}
+async function doSearch(event){
+ event.preventDefault();clearNotice();const query=$('search-query').value.trim();const zone=$('search-zone').value.trim();if(query.length<2)return;
+ $('search-button').disabled=true;$('search-button').textContent='Searching…';
+ try {
+  if(ui.mode==='demo'){
+   ui.search=DEMO_COMMANDERS.filter(c=>(c.name+' '+c.tag+' SAMPLE').toLowerCase().includes(query.toLowerCase())&&(!zone||String(c.serverId)===zone));
+   if(!ui.search.length)notify('No fictional sample matched. Try “SAMPLE” or switch to Live for a real commander search.','warning');
+  }else{
+   const result=await api('search',{query,warzone:zone});ui.search=Array.isArray(result.items)?result.items:[];
+   if(!ui.search.length)notify('No index matches returned by lastintel.','warning');
+  }
+  ui.selected=null;renderSelected();renderSearch();
+ }catch(e){notify('Search failed: '+e.message,'error')}
+ finally{$('search-button').disabled=false;$('search-button').textContent='⌕ Search'}
+}
+function scanQuote(jobType,scope){
+ if(ui.mode==='demo')return 'DEMO · no credits';
+ const job=ui.jobs.find(j=>j.type===jobType || (jobType==='secret_task'&&j.type==='secret'));
+ if(!job)return 'Provider price unavailable';
+ const n=scope?scope.split(/[\s,;]+/).filter(Boolean).length:0;
+ if(jobType==='locate')return `${job.priceCredits??'Provider-priced'} credits for initial search; more warzones may cost extra`;
+ if(n && ui.account?.scanUnit)return `Estimated ${n*ui.account.scanUnit} credits for ${n} warzone(s)`;
+ return `${job.priceCredits??'Provider-priced'} credits (provider quote)`;
+}
+function showModal({title,description,extra='',button='Confirm',onConfirm}){
+ $('modal-title').textContent=title;$('modal-text').textContent=description;
+ $('modal-extra').innerHTML=extra;$('modal-ok').textContent=button;
+ ui.modalAction=onConfirm;$('modal-root').classList.remove('hidden');
+}
+function hideModal(){$('modal-root').classList.add('hidden');ui.modalAction=null}
+function parseZones(str,max){const a=[...new Set(String(str||'').split(/[\s,;]+/).map(s=>s.trim()).filter(Boolean))];if(!a.length||a.length>max||!a.every(v=>/^\d{1,5}$/.test(v)&&Number(v)>=1))throw Error(`Enter 1–${max} numeric warzone IDs.`);return a.map(Number)}
+async function locate(){
+ if(!ui.selected)return;
+ const scopes=$('locate-zones').value;
+ let zones;try{zones=parseZones(scopes,10)}catch(e){notify(e.message,'error');return}
+ if(ui.mode==='demo'){
+  const match=DEMO_COMMANDERS.find(c=>c.id===ui.selected.id);
+  const row={...match,warzone:match.serverId,kind:'base',alliance:match.tag};ui.lastLocate=row;
+  $('locate-result').innerHTML=`<div class="success"><b>DEMO LOCATION ONLY</b><br>#${row.warzone} · X ${row.x} · Y ${row.y}<div class="target-actions"><button class="smallbtn" id="copy-locate">Copy sample coordinates</button></div></div>`;
+  $('copy-locate').onclick=()=>copyCoords(row);return;
+ }
+ if(!ui.account){notify('Set up your lastintel API token before starting a paid commander search.','warning');return}
+ showModal({title:'Confirm charged base locator',description:`Search ${ui.selected.name} across warzone(s) ${zones.join(', ')}. This sends a real paid request to lastintel.`,extra:`<div class="sensitive"><b>${esc(scanQuote('locate',scopes))}</b><br>Balance: ${esc(ui.account?.credits??'—')} credits. The provider determines actual charges. Do not repeat the request unless you intend another charge.</div>`,button:'Run paid search',onConfirm:async()=>{
+  const data=await api('locate',{commanderId:ui.selected.id,warzones:zones,confirmed:true});
+  const rows=extractItems(data);const loc=rows.map(v=>normTarget(v,'base')).find(v=>validXY(v));
+  ui.lastLocate=loc||null;if(loc){ui.liveMap=[loc,...ui.liveMap.filter(v=>v.id!==loc.id)];updateMapZones()}
+  $('locate-result').innerHTML=loc?`<div class="success">Located by provider: #${esc(loc.warzone)} · X ${loc.x} · Y ${loc.y}<div class="target-actions"><button class="smallbtn" id="copy-locate">Copy coordinate</button><button class="smallbtn orange" id="send-locate">Send in-game</button></div></div>`:`<div class="result-note">Search completed. No usable coordinate was returned in the provider response. Details: ${esc(JSON.stringify(data).slice(0,1000))}</div>`;
+  if(loc){$('copy-locate').onclick=()=>copyCoords(loc);$('send-locate').onclick=()=>sendCoords(loc)}
+  await checkConnection();
+ }});
+}
+function getRewardOptions(){
+ const job=ui.jobs.find(j=>j.type==='secret_task'||j.type==='secret');
+ const item=(job?.options||[]).find(o=>o.key==='items');
+ const opts=item?.choices||item?.values||item?.enum||[];
+ return opts.map(c=> typeof c==='string'?{value:c,label:c}:{value:String(c.value??c.id??c.key??''),label:String(c.label??c.name??c.value??c.id??'')}).filter(v=>v.value);
+}
+function renderRewards(){
+ const el=$('reward-options');const supported=getRewardOptions();
+ let options=REWARDS;
+ if(ui.mode==='live'&&supported.length){
+  options=[REWARDS[0],...supported.map(c=>({id:c.value,label:c.label,icon:REWARDS.find(r=>r.label.toLowerCase()===c.label.toLowerCase())?.icon||'✧'}))];
+  if(!options.some(v=>v.id===ui.reward))ui.reward='all';
+ }
+ el.innerHTML=options.map(r=>`<button type="button" class="reward ${ui.reward===r.id?'active':''}" data-reward="${esc(r.id)}"><span>${r.icon}</span><small>${esc(r.label)}</small></button>`).join('');
+ el.querySelectorAll('[data-reward]').forEach(btn=>btn.onclick=()=>{ui.reward=btn.dataset.reward;renderRewards();if(ui.mode==='demo')renderTasks()});
+ $('reward-helper').textContent=ui.mode==='demo'?'Fictional mission previews. No credit charges.':supported.length?'Choose a provider-supported reward; the scan sends its exact code.':'Provider reward codes unavailable. Select a visual preference, but scan requests All rewards and may require manual inspection.';
+}
+function updateCost(){
+ const val=ui.scope==='custom'?$('task-zones').value:'';
+ $('task-cost').textContent=scanQuote('secret_task',val);
+}
+function setScope(v){ui.scope=v;document.querySelectorAll('.scope').forEach(el=>el.classList.toggle('active',el.querySelector('input').value===v));$('task-zone-wrap').classList.toggle('hidden',v!=='custom');updateCost()}
+function validXY(t){return Number.isFinite(Number(t.x))&&Number.isFinite(Number(t.y))&&t.x!==null&&t.y!==null&&t.x!==''&&t.y!==''}
+function extractItems(data){if(Array.isArray(data))return data;if(Array.isArray(data.items))return data.items;if(Array.isArray(data.targets))return data.targets;if(Array.isArray(data.results))return data.results;if(data.result&&Array.isArray(data.result.items))return data.result.items;return data.x!==undefined?[data]:[]}
+function normTarget(v,defKind='task'){
+ const coord=v.coordinates||v.coordinate||v.position||v.location||{};
+ const zone=v.warzone??v.serverId??v.warzoneId??coord.warzone??coord.serverId??2079;
+ const x=v.x??v.mapX??v.coordX??coord.x??coord.mapX??null;
+ const y=v.y??v.mapY??v.coordY??coord.y??coord.mapY??null;
+ const reward=typeof v.reward==='string'?v.reward:typeof v.item==='string'?v.item:typeof v.items?.[0]==='string'?v.items[0]:v.itemName||v.rewardName||'';
+ return {id:String(v.id??v.uid??`${zone}:${x}:${y}:${v.name??''}`),name:String(v.name??v.commanderName??v.targetName??v.title??v.taskName??'Target'),alliance:String(v.alliance??v.allianceTag??v.tag??''),warzone:Number(zone),x:x===null?null:Number(x),y:y===null?null:Number(y),reward:String(reward),amount:String(v.amount??v.quantity??''),kind:defKind,raw:v};
+}
+async function findTasks(){
+ if(ui.mode==='demo'){
+  ui.taskResults=DEMO_TASKS.filter(t=>(ui.reward==='all'||t.reward===ui.reward)&& (ui.scope==='auto'||parseZones($('task-zones').value,3).includes(t.warzone)));
+  renderTasks();notify('DEMO ONLY: The displayed coordinates and rewards are invented examples.');return;
+ }
+ if(!ui.account){notify('Live mission scans need an API token and credits configured on the server.','warning');return}
+ let zoneArr=null;
+ try{if(ui.scope==='custom')zoneArr=parseZones($('task-zones').value,3)}catch(e){notify(e.message,'error');return}
+ const choices=getRewardOptions();const supported=choices.some(r=>r.value===ui.reward);
+ const rewardCode=ui.reward!=='all'&&supported?ui.reward:'';
+ const actualDesc=rewardCode?`reward “${ui.reward}”`:'all reward types';
+ const scopeText=zoneArr?`warzone(s) ${zoneArr.join(', ')}`:'warzones selected by the provider';
+ showModal({title:'Confirm charged task scan',description:`Find secret tasks for ${actualDesc} across ${scopeText}. This spends real lastintel credits.`,extra:`<div class="sensitive"><b>${esc(scanQuote('secret_task',zoneArr?.join(',')||''))}</b><br>Balance: ${esc(ui.account.credits)} credits. Result availability and charges depend on the provider.</div>`,button:'Run paid task scan',onConfirm:async()=>{
+  const data=await api('secret',{confirmed:true,warzones:zoneArr||'',rewardCode});
+  ui.taskResults=extractItems(data).map(v=>normTarget(v,'task'));
+  ui.liveMap=[...ui.taskResults.filter(validXY),...ui.liveMap.filter(v=>v.kind!=='task')];
+  renderTasks();updateMapZones();await checkConnection();
+  if(!ui.taskResults.length)notify('Provider returned no mission rows. This does not imply a full warzone scan was returned.','warning');
+ }});
+}
+function renderTasks(){
+ const el=$('task-results'),items=ui.taskResults;$('task-count').textContent=items.length+' targets';
+ if(!items.length){el.className='result-list empty-state';el.innerHTML='<div class="empty-icon">✧</div><p>No mission results. Run a search.</p>';return}
+ el.className='result-list';
+ el.innerHTML=items.map((t,i)=>`<div class="target-row"><div><div class="row-title">${esc(t.name||'Mission')} ${ui.mode==='demo'?'<span class="target-badge">DEMO</span>':''}</div><div class="target-meta"><span>${esc(t.alliance?'['+t.alliance+']':'')}</span><span>Warzone #${esc(t.warzone??'?')}</span><span>${validXY(t)?'X '+esc(t.x)+' · Y '+esc(t.y):'Coordinate unavailable'}</span></div><p class="reward-info">✧ ${esc(t.reward||'Reward not specified')} ${esc(t.amount||'')}</p><div class="target-actions"><button class="smallbtn" data-copy-task="${i}" ${validXY(t)?'':'disabled'}>Copy coords</button><button class="smallbtn orange" data-send-task="${i}" ${validXY(t)&&ui.mode==='live'?'':'disabled'}>Send in-game</button></div></div><span class="target-badge">TASK</span></div>`).join('');
+ el.querySelectorAll('[data-copy-task]').forEach(b=>b.onclick=()=>copyCoords(items[Number(b.dataset.copyTask)]));
+ el.querySelectorAll('[data-send-task]').forEach(b=>b.onclick=()=>sendCoords(items[Number(b.dataset.sendTask)]));
+}
+async function copyText(value){try{await navigator.clipboard.writeText(value);notify('Coordinates copied.')}catch{
+  const ta=document.createElement('textarea');ta.value=value;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notify('Coordinates copied.')}}
+function copyCoords(t){if(!validXY(t))return notify('No coordinate available.','warning');copyText(`#${t.warzone} X:${t.x} Y:${t.y} ${t.name||''}`)}
+async function sendCoords(t){
+ if(!validXY(t)||ui.mode!=='live')return;
+ if(!ui.tokenConfigured){notify('Connect your lastintel API token first.','warning');return}
+ let verified;try{verified=await api('verified')}catch(e){notify('Cannot load verified game accounts: '+e.message,'error');return}
+ const opts=verified.items||[];if(!opts.length){notify('Verify your game commander inside lastintel before sending coordinates.','warning');return}
+ const select=`<label>Verified game commander<select id="send-uid">${opts.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}</select></label><div class="sensitive">#${esc(t.warzone)} · <b>X ${esc(t.x)} · Y ${esc(t.y)}</b><br>This creates a real in-game private message and may spend provider credits. The send cannot be undone.</div>`;
+ showModal({title:'Send in-game coordinate',description:`Send ${t.name} to your own verified game account?`,extra:select,button:'Send message',onConfirm:async()=>{
+  const uid=$('send-uid').value;const result=await api('send',{targetUid:uid,warzone:t.warzone,x:t.x,y:t.y,label:t.name,confirmed:true});
+  notify(result.delivered?'Coordinate sent to verified in-game messages.':'Provider returned a send response. Check your game inbox.');
+ }});
+}
+function renderMap(){updateMapZones()}
+function renderSaved(){
+ $('saved-count').textContent=ui.saved.length+' saved';$('nav-count').textContent=ui.saved.length;
+ const q=$('saved-filter').value.toLowerCase().trim();const items=ui.saved.map((x,i)=>({...x,originalIndex:i})).filter(t=>!q||`${t.name} ${t.alliance} ${t.warzone} ${t.x} ${t.y}`.toLowerCase().includes(q));
+ $('saved-list').innerHTML=items.length?items.map(t=>`<div class="saved-card"><div><h4>${esc(t.name)}</h4><p>${esc(t.alliance||'Local entry')} · #${esc(t.warzone)} · X ${esc(t.x)} · Y ${esc(t.y)} · ${esc(t.kind)}</p>${t.notes?`<p>${esc(t.notes)}</p>`:''}</div><div class="saved-actions"><button class="smallbtn" data-savecopy="${t.originalIndex}">Copy</button><button class="smallbtn" data-saveview="${t.originalIndex}">Map</button><button class="smallbtn orange" data-savedel="${t.originalIndex}">Delete</button></div></div>`).join(''):'<div class="empty-state"><div class="empty-icon">⚑</div><p>No local targets. Add coordinates from the map or import your CSV.</p></div>';
+ $('saved-list').querySelectorAll('[data-savecopy]').forEach(b=>b.onclick=()=>copyCoords(ui.saved[+b.dataset.savecopy]));
+ $('saved-list').querySelectorAll('[data-saveview]').forEach(b=>b.onclick=()=>{const t=ui.saved[+b.dataset.saveview];go('map');$('map-zone-filter').value=String(t.warzone);ui.map.centerX=t.x;ui.map.centerY=t.y;ui.map.zoom=2;ui.map.hover=t;drawMap()});
+ $('saved-list').querySelectorAll('[data-savedel]').forEach(b=>b.onclick=()=>{ui.saved.splice(+b.dataset.savedel,1);saveLocal()});
+}
+function csvParse(text){
+ const result=[],rows=[];let row=[],cell='',quoted=false;const input=String(text).replace(/^\uFEFF/,'');
+ for(let i=0;i<input.length;i++){
+  let c=input[i];if(quoted){if(c==='"'&&input[i+1]==='"'){cell+='"';i++}else if(c==='"')quoted=false;else cell+=c;continue}
+  if(c==='"')quoted=true;else if(c===','){row.push(cell);cell=''}else if(c==='\n'){row.push(cell.replace(/\r$/,''));rows.push(row);row=[];cell=''}else cell+=c;
+ }
+ if(quoted)throw Error('CSV has an unclosed quote.');if(cell||row.length){row.push(cell);rows.push(row)}
+ const head=(rows.shift()||[]).map(s=>s.trim().toLowerCase());
+ if(!['name','x','y','warzone'].every(h=>head.includes(h)))throw Error('CSV must include name, warzone, x and y header columns.');
+ for(const r of rows){const obj=Object.fromEntries(head.map((k,i)=>[k,(r[i]||'').trim()]));if(!obj.name)continue;
+  const t={id:`local-${Date.now()}-${result.length}`,name:obj.name,alliance:obj.alliance||'',warzone:Number(obj.warzone),x:Number(obj.x),y:Number(obj.y),kind:['base','task','friendly','other'].includes(obj.kind)?obj.kind:'other',reward:obj.reward||'',notes:obj.notes||''};
+  if(!validLocal(t))throw Error('Invalid coordinate row for '+obj.name);
+  result.push(t);
+ }
+ return result;
+}
+function validLocal(t){return Number.isSafeInteger(t.warzone)&&t.warzone>=1&&t.warzone<=100000&&Number.isFinite(t.x)&&t.x>=0&&t.x<=10000&&Number.isFinite(t.y)&&t.y>=0&&t.y<=10000}
+async function importCsv(event){
+ const file=event.target.files?.[0];if(!file)return;
+ try{if(file.size>1000000)throw Error('File must be under 1 MB');const items=csvParse(await file.text());if(ui.saved.length+items.length>5000)throw Error('Maximum 5,000 local targets supported.');
+ ui.saved.push(...items);saveLocal();$('import-status').textContent=`Imported ${items.length} local target(s).`;
+ notify(`Imported ${items.length} targets from your CSV. No data was sent to any server.`);
+ }catch(e){$('import-status').textContent=e.message;notify('Import failed: '+e.message,'error')}
+ event.target.value='';
+}
+function downloadFile(filename,body){const blob=new Blob([body],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function addManual(e){e.preventDefault();const obj={id:`local-${Date.now()}`,name:$('manual-name').value.trim(),alliance:'',warzone:Number($('manual-zone').value),x:Number($('manual-x').value),y:Number($('manual-y').value),kind:$('manual-kind').value,reward:'',notes:''};
+ if(!obj.name||!validLocal(obj)){notify('Enter a name and valid coordinates.','error');return}
+ ui.saved.push(obj);saveLocal();e.target.reset();$('manual-zone').value='2079';notify(`Saved ${obj.name} as a local target.`);
+}
+function mapPoints(){const src=[...ui.saved,...(ui.mode==='demo'?[...DEMO_TASKS,...DEMO_COMMANDERS.map(c=>({id:c.id,name:c.name,alliance:c.tag,warzone:c.serverId,x:c.x,y:c.y,kind:'base'}))]:ui.liveMap)];return src.filter(x=>Number(x.warzone)===Number($('map-zone-filter').value)&&validXY(x))}
+function updateMapZones(){
+ const el=$('map-zone-filter');const before=el.value||'2079';const zones=new Set([2079]);[...ui.saved,...DEMO_TASKS,...DEMO_COMMANDERS.map(c=>({warzone:c.serverId})),...ui.liveMap].forEach(v=>zones.add(Number(v.warzone)));
+ el.innerHTML=[...zones].sort((a,b)=>a-b).map(v=>`<option value="${v}">#${v}</option>`).join('');el.value=[...zones].includes(Number(before))?before:'2079';drawMap();
+}
+function drawMap(){
+ const canvas=$('map-canvas');const host=canvas.parentElement;const width=Math.round(host.clientWidth),height=Math.round(host.clientHeight);if(width<1||height<1)return;
+ const dpr=Math.min(devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;
+ const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);
+ ctx.fillStyle='#0c1b2a';ctx.fillRect(0,0,width,height);
+ const pts=mapPoints();const extent=Math.max(1000,...pts.map(p=>Math.max(p.x,p.y)+100));ui.map.extent=extent;
+ const scale=Math.min((width-50)/extent,(height-50)/extent)*ui.map.zoom;ui.map.scale=scale;
+ const project=(x,y)=>({px:width/2+(x-ui.map.centerX)*scale,py:height/2+(y-ui.map.centerY)*scale});ui.map.project=project;
+ ctx.lineWidth=1;ctx.font='10px system-ui';
+ const step=ui.map.zoom>=2?50:100;
+ for(let val=0;val<=extent;val+=step){const ax=project(val,0).px,ay=project(0,val).py;
+  ctx.strokeStyle=val%200===0?'#34506877':'#243b5050';
+  if(ax>=0&&ax<=width){ctx.beginPath();ctx.moveTo(ax,0);ctx.lineTo(ax,height);ctx.stroke();if(val%200===0){ctx.fillStyle='#607f99';ctx.fillText(val,ax+3,13)}}
+  if(ay>=0&&ay<=height){ctx.beginPath();ctx.moveTo(0,ay);ctx.lineTo(width,ay);ctx.stroke();if(val%200===0){ctx.fillStyle='#607f99';ctx.fillText(val,5,ay-4)}}
+ }
+ const colors={task:'#f4b150',base:'#f17777',friendly:'#61e5ad',other:'#6cc3ec'};
+ for(const p of pts){const pos=project(p.x,p.y);if(pos.px<0||pos.px>width||pos.py<0||pos.py>height)continue;
+  const active=ui.map.hover&&p.id===ui.map.hover.id;ctx.beginPath();ctx.arc(pos.px,pos.py,active?9:5.4,0,Math.PI*2);ctx.fillStyle=colors[p.kind]||colors.other;ctx.fill();ctx.strokeStyle='#07101b';ctx.lineWidth=2;ctx.stroke();
+  if(active){ctx.beginPath();ctx.arc(pos.px,pos.py,14,0,Math.PI*2);ctx.strokeStyle='#ffda9c';ctx.stroke()}
+ }
+ $('map-points').textContent=pts.length+' mapped locations';$('map-zone-name').textContent='#'+$('map-zone-filter').value+' / TLW FIELD MAP';
+}
+function mapTap(e){
+ const c=$('map-canvas'),rect=c.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;
+ let best=null,dist=16;
+ for(const p of mapPoints()){const pos=ui.map.project(p.x,p.y);const d=Math.hypot(pos.px-x,pos.py-y);if(d<dist){dist=d;best=p}}
+ if(best){ui.map.hover=best;$('map-selected').innerHTML=`<b>${esc(best.name)}</b> · #${esc(best.warzone)} · X ${esc(best.x)} Y ${esc(best.y)} · ${esc(best.kind)} <button class="smallbtn" id="map-copy">Copy</button>`;$('map-copy').onclick=()=>copyCoords(best)}else{ui.map.hover=null;$('map-selected').textContent='No target selected. Pan or zoom to explore.'}drawMap();
+}
+function mapMoveStart(e){const c=$('map-canvas');c.setPointerCapture(e.pointerId);ui.map.drag={x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false}}
+function mapMove(e){const d=ui.map.drag;if(!d)return;const dx=e.clientX-d.lastX,dy=e.clientY-d.lastY;if(Math.abs(e.clientX-d.x)>4||Math.abs(e.clientY-d.y)>4)d.moved=true;
+ if(d.moved){ui.map.centerX-=dx/(ui.map.scale||1);ui.map.centerY-=dy/(ui.map.scale||1);drawMap()}d.lastX=e.clientX;d.lastY=e.clientY}
+function mapMoveEnd(e){const d=ui.map.drag;if(!d)return;ui.map.drag=null;if(!d.moved)mapTap(e)}
+function zoom(factor){ui.map.zoom=Math.max(.6,Math.min(6,ui.map.zoom*factor));drawMap()}
+async function openSettings(){
+ const connected=ui.tokenConfigured?'API token is configured on the server.':'No server-side API token is configured.';
+ const html=`<div class="sensitive">${esc(connected)}<br>Never paste your lastintel API token into this browser. Configure it privately in your server environment. Game passwords are never needed.</div><label style="margin-top:14px">Optional TLW private access code<input id="settings-access" style="display:block;width:100%;padding:12px;margin-top:7px;background:#0e1724;color:white;border:1px solid #4a6075;border-radius:8px" type="password" placeholder="Leave blank if access protection is disabled" value="${esc(sessionStorage.getItem('tlw-access-code')||'')}"></label><p class="helper">Access code is kept only for this browser tab session. It is not the lastintel token.</p>`;
+ showModal({title:'TLW Intel settings',description:'Server #2079 · The Lost Warriors. This is a private operator tool, not an alliance-wide synchronized database.',extra:html,button:'Save settings',onConfirm:async()=>{sessionStorage.setItem('tlw-access-code',$('settings-access').value.trim());await checkConnection()}});
+}
+function init(){
+ document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+ $('toggle-mode').onclick=switchMode;$('settings-open').onclick=openSettings;
+ $('search-form').onsubmit=doSearch;$('locate-button').onclick=locate;
+ document.querySelectorAll('input[name="scope"]').forEach(b=>b.onchange=()=>setScope(b.value));$('task-zones').oninput=updateCost;
+ $('find-tasks').onclick=()=>{try{if(ui.mode==='demo'&&ui.scope==='custom')parseZones($('task-zones').value,3);findTasks()}catch(e){notify(e.message,'error')}};
+ $('manual-form').onsubmit=addManual;$('csv-import').onchange=importCsv;
+ $('csv-template').onclick=()=>downloadFile('tlw-intel-coordinate-template.csv','name,alliance,warzone,x,y,kind,reward,notes\n');
+ $('saved-filter').oninput=renderSaved;$('clear-saved').onclick=()=>{
+  if(!ui.saved.length)return;
+  showModal({title:'Delete local targets?',description:`Permanently erase ${ui.saved.length} target(s) saved in this browser. This cannot be undone.`,button:'Delete all local targets',onConfirm:()=>{ui.saved=[];saveLocal();notify('All local targets deleted.')}});
+ };
+ $('modal-close').onclick=hideModal;$('modal-cancel').onclick=hideModal;
+ $('modal-root').onclick=e=>{if(e.target===$('modal-root'))hideModal()};
+ $('modal-ok').onclick=async()=>{const fn=ui.modalAction;if(!fn)return;const btn=$('modal-ok');btn.disabled=true;const prev=btn.textContent;btn.textContent='Working…';try{await fn();hideModal()}catch(e){$('modal-text').textContent='Operation failed: '+e.message;notify(e.message,'error')}finally{btn.disabled=false;btn.textContent=prev}};
+ $('zoom-out').onclick=()=>zoom(.75);$('zoom-in').onclick=()=>zoom(1.4);
+ $('zoom-reset').onclick=()=>{ui.map.zoom=1;ui.map.centerX=500;ui.map.centerY=500;drawMap()};
+ $('map-zone-filter').onchange=()=>{ui.map.zoom=1;ui.map.centerX=500;ui.map.centerY=500;drawMap()};
+ const canvas=$('map-canvas');canvas.onpointerdown=mapMoveStart;canvas.onpointermove=mapMove;canvas.onpointerup=mapMoveEnd;canvas.onpointercancel=()=>ui.map.drag=null;
+ canvas.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0?1.15:.86)},{passive:false});
+ window.addEventListener('resize',drawMap);
+ renderRewards();renderSearch();renderSelected();renderTasks();renderSaved();refreshStats();updateMapZones();go('overview');
+}
+document.addEventListener('DOMContentLoaded',init);
+
+</script>
+</body>
+</html>

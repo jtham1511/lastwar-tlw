@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a101a"><meta name="description" content="TLW Intel — private Last War targeting dashboard, Warzone 2079">
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><title>TLW Intel · #2079</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><div class="brandmark">✦</div><div><strong>TLW<span>INTEL</span></strong><small>TLW ALLIANCE</small></div></div>
+      <div class="server-chip"><span class="status-dot"></span><div><small>HOME WARZONE</small><b>#2079 <span>· TLW</span></b></div></div>
+      <div class="nav-label">COMMAND CENTER</div>
+      <nav id="desktop-nav" aria-label="Primary">
+        <button class="nav active" data-page="overview"><span>◫</span> Overview</button>
+        <button class="nav" data-page="commander"><span>⌖</span> Commander Locator</button>
+        <button class="nav" data-page="tasks"><span>✧</span> Secret Task Finder</button>
+        <button class="nav" data-page="map"><span>▦</span> Tactical Map</button>
+        <button class="nav" data-page="saved"><span>⚑</span> Saved Targets <i id="nav-count">0</i></button>
+      </nav>
+      <div class="sidebar-foot"><div class="line"></div><small>FOR TLW ALLIANCE OPERATIONS</small><p>Scout smart. Strike together.</p><div class="source">Data: <a target="_blank" rel="noopener" href="https://lastintel.io">lastintel.io</a> · independent project</div></div>
+    </aside>
+    <div class="app">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brandmark">✦</span><b>TLW <span>INTEL</span></b></div>
+        <div class="crumb" id="crumb">OPERATIONS <span>/</span> OVERVIEW</div>
+        <div class="top-actions">
+          <div id="mode-label" class="mode-label">◉ DEMO DATA</div>
+          <button id="toggle-mode" class="btn mode-btn" title="Switch between sample and live data">Switch to live</button>
+          <button id="settings-open" class="icon-btn" aria-label="Open settings" title="Settings">⚙</button>
+        </div>
+      </header>
+      <main>
+        <div id="notice" class="notice" hidden></div>
+        <section class="page" id="page-overview">
+          <div class="hero"><div class="hero-content"><div class="eyebrow">SERVER #2079 · TLW COMMAND CENTER</div><h1>Own the map.<br><em>Control the hunt.</em></h1><p>Search commander bases, discover plunderable missions, and prepare targets for TLW alliance.</p><div class="hero-buttons"><button class="btn primary" data-go="commander">⌖ Locate commander</button><button class="btn outline" data-go="tasks">✧ Find secret tasks</button></div></div><div class="hero-sigil"><div class="sigil-ring"><span>✦</span></div><small>TLW ALLIANCE</small></div></div>
+          <div class="stats">
+            <div class="stat"><span>HOME WARZONE</span><strong>#2079</strong><small>TLW territory</small></div>
+            <div class="stat"><span>DATA SOURCE</span><strong id="stat-source">Demo</strong><small id="stat-source-sub">Sample dataset only</small></div>
+            <div class="stat"><span>YOUR TARGETS</span><strong id="stat-targets">0</strong><small>Saved on this device</small></div>
+            <div class="stat"><span>SCAN CREDITS</span><strong id="stat-credits">—</strong><small id="stat-credit-sub">Connect provider to check</small></div>
+          </div>
+          <div class="section-head"><div><div class="eyebrow">TOOLKIT</div><h2>Tactical operations</h2></div><span class="muted">One place for TLW scouting</span></div>
+          <div class="feature-cards">
+            <button class="feature" data-go="commander"><span class="feature-icon amber">⌖</span><span class="feature-tag">PLAYER INTEL</span><b>Commander Locator</b><small>Find commanders and request their current map positions.</small><span class="feature-link">Open locator →</span></button>
+            <button class="feature" data-go="tasks"><span class="feature-icon blue">✦</span><span class="feature-tag">RESOURCE INTEL</span><b>Secret Task Finder</b><small>Choose rewards and target warzones for plunderable missions.</small><span class="feature-link">Find missions →</span></button>
+            <button class="feature" data-go="map"><span class="feature-icon green">▦</span><span class="feature-tag">FIELD MAP</span><b>Tactical Map</b><small>Explore saved and imported coordinates with a mobile-friendly grid.</small><span class="feature-link">View map →</span></button>
+          </div>
+          <div class="info-banner"><span>ⓘ</span><div><strong>Scans require an authorized data connection.</strong><p>Read-only commander searches use lastintel's public API. Live scans spend credits, and the provider does not supply raw map data through its scan endpoint. Demo targets are fictional.</p></div></div>
+        </section>
+
+        <section class="page hidden" id="page-commander">
+          <div class="page-top"><div><div class="eyebrow">01 / TARGET ACQUISITION</div><h1>Commander <em>Locator</em></h1><p>Identify commanders by name or alliance. Locating their actual base is a separate credit-charged search.</p></div><div class="page-icon">⌖</div></div>
+          <div class="panel"><div class="panel-title"><b>Search commander or alliance</b><span class="tag">FREE INDEX SEARCH</span></div>
+            <form id="search-form" class="search-form"><label class="field grow"><small>COMMANDER NAME / ALLIANCE</small><input id="search-query" required minlength="2" maxlength="200" placeholder="e.g. commander name or [TAG]" autocomplete="off"></label><label class="field smallfield"><small>WARZONE (OPTIONAL)</small><input id="search-zone" placeholder="All warzones" inputmode="numeric"></label><button class="btn primary action" type="submit" id="search-button">⌕ Search</button></form>
+            <div class="helper">Search is free. Map positions are not included in index results.</div></div>
+          <div class="two-col"><div class="panel"><div class="panel-title"><b>Commander results</b><span class="tag" id="search-count">0 found</span></div><div id="search-results" class="result-list empty-state"><div class="empty-icon">⌕</div><p>Search for a player to begin.</p></div></div>
+            <div class="panel"><div class="panel-title"><b>Locate selected commander</b><span class="tag gold">CREDITED SCAN</span></div><div id="selected-commander" class="selected-empty">Select a commander from the results.</div><label class="field"><small>WARZONES TO SEARCH (MAX 10)</small><input id="locate-zones" value="2079" placeholder="2079,2064" inputmode="text"></label><div class="helper">Include the player's home or season-group warzones. Each searched warzone may be charged.</div><button id="locate-button" class="btn primary full" disabled>⌖ Locate base · confirm credits</button><div id="locate-result" class="scan-result"></div></div>
+          </div>
+        </section>
+
+        <section class="page hidden" id="page-tasks">
+          <div class="page-top"><div><div class="eyebrow">02 / RESOURCE ACQUISITION</div><h1>Secret Task <em>Finder</em></h1><p>Find plunder targets carrying rewards you actually want. Search selected warzones or let the provider choose.</p></div><div class="page-icon">✧</div></div>
+          <div class="panel"><div class="panel-title"><b>Choose your reward</b><span class="tag">FILTER MISSION REWARDS</span></div><div id="reward-options" class="rewards"></div><div class="helper" id="reward-helper">Demo filters fictional targets. In live mode, provider-supported reward codes are used where available.</div></div>
+          <div class="panel"><div class="panel-title"><b>Search scope</b><span class="tag gold">SPENDS SCAN CREDITS</span></div><div class="scope-grid"><label class="scope active" id="scope-auto"><input type="radio" name="scope" value="auto" checked><div><strong>◎ Around my warzone</strong><p>Provider automatically picks warzones. Recommended for resource hunting.</p></div></label><label class="scope" id="scope-custom"><input type="radio" name="scope" value="custom"><div><strong>⌗ Choose warzones</strong><p>Scan up to three warzones of your choice.</p></div></label></div><label id="task-zone-wrap" class="field hidden" style="margin-top:18px"><small>WARZONES · MAX THREE</small><input id="task-zones" placeholder="e.g. 2064, 2078, 2080" inputmode="text"></label><div class="scope-summary"><div><small>SCAN ESTIMATE</small><b id="task-cost">Provider quote required</b></div><div><small>ACCOUNT</small><b id="task-balance">Not connected</b></div></div><button id="find-tasks" class="btn primary full">✧ Find secret tasks · confirm credits</button></div>
+          <div class="panel"><div class="panel-title"><b>Mission results</b><span id="task-count" class="tag">0 targets</span></div><div id="task-results" class="result-list empty-state"><div class="empty-icon">✧</div><p>Choose a reward and run a search.</p></div></div>
+        </section>
+
+        <section class="page hidden" id="page-map">
+          <div class="page-top"><div><div class="eyebrow">03 / FIELD INTELLIGENCE</div><h1>Tactical <em>Map</em></h1><p>Visualize user-supplied coordinates and targets. This is not a live scanned warzone map.</p></div><div class="page-icon">▦</div></div>
+          <div class="panel map-panel"><div class="map-toolbar"><div class="map-heading"><b>WARZONE GRID</b><span id="map-points">0 mapped locations</span></div><div class="map-controls"><select id="map-zone-filter" aria-label="Map warzone" class="btn mini"><option value="2079">#2079</option></select><button class="btn mini" id="zoom-out">−</button><button class="btn mini" id="zoom-in">+</button><button class="btn mini" id="zoom-reset">Reset</button></div></div><div class="map-wrap"><canvas id="map-canvas" aria-label="Interactive map of saved targets"></canvas><div class="map-watermark"><span id="map-zone-name">#2079 / TLW FIELD MAP</span> <small id="map-state">SAMPLE DATA</small></div></div><div class="map-legend"><span><i class="dot amber"></i> Secret tasks</span><span><i class="dot red"></i> Enemy bases</span><span><i class="dot green"></i> Friendly bases</span><span><i class="dot teal"></i> Other</span></div><div id="map-selected" class="map-selection muted">Tap a point to view coordinates, or import a CSV.</div></div>
+          <div class="two-col"><div class="panel"><div class="panel-title"><b>Import a coordinate list</b><span class="tag">USER DATA ONLY</span></div><p class="minor">Import an independently collected CSV with these columns: <code>name,alliance,warzone,x,y,kind,reward,notes</code>. Data stays in this browser.</p><div class="button-row"><label class="btn outline upload">⇧ Import CSV<input type="file" id="csv-import" accept=".csv,text/csv" hidden></label><button id="csv-template" class="btn outline">Get CSV template</button></div><div id="import-status" class="helper"></div></div>
+            <div class="panel"><div class="panel-title"><b>Add a coordinate</b><span class="tag">LOCAL TARGET</span></div><form id="manual-form" class="manual-form"><label class="field"><small>NAME</small><input id="manual-name" placeholder="Target / mission name" required></label><div class="inline-fields"><label class="field"><small>X</small><input id="manual-x" type="number" min="0" max="10000" required></label><label class="field"><small>Y</small><input id="manual-y" type="number" min="0" max="10000" required></label></div><div class="inline-fields"><label class="field"><small>WARZONE</small><input id="manual-zone" type="number" value="2079" min="1" required></label><label class="field"><small>KIND</small><select id="manual-kind"><option value="base">Enemy base</option><option value="task">Secret task</option><option value="friendly">Friendly base</option><option value="other">Other</option></select></label></div><button class="btn primary full" type="submit">+ Save coordinate</button></form></div></div>
+        </section>
+        <section class="page hidden" id="page-saved">
+          <div class="page-top"><div><div class="eyebrow">04 / MISSION BOARD</div><h1>Saved <em>Targets</em></h1><p>Your own coordinates and CSV imports, saved on this device. No alliance-wide sync yet.</p></div><div class="page-icon">⚑</div></div>
+          <div class="panel"><div class="panel-title"><b>My target list</b><span id="saved-count" class="tag">0 saved</span></div><div class="saved-tools"><input id="saved-filter" placeholder="Search your targets by name, alliance or coordinate"><button id="clear-saved" class="btn danger">Clear local targets</button></div><div id="saved-list" class="result-list"></div></div>
+        </section>
+        <footer>TLW INTEL · PRIVATE SCOUTING INTERFACE · <a href="https://lastintel.io" rel="noopener" target="_blank">Data: lastintel.io</a> · Not affiliated with Last War: Survival or lastintel</footer>
+      </main>
+      <nav class="bottomnav" aria-label="Mobile navigation"><button class="active" data-page="overview"><span>◫</span>Home</button><button data-page="commander"><span>⌖</span>Bases</button><button data-page="tasks"><span>✧</span>Tasks</button><button data-page="map"><span>▦</span>Map</button><button data-page="saved"><span>⚑</span>Saved</button></nav>
+    </div>
+  </div>
+  <div id="modal-root" class="modal-root hidden"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h3 id="modal-title">Confirm action</h3><button id="modal-close" class="close" aria-label="Close">×</button></div><p id="modal-text"></p><div id="modal-extra"></div><div class="modal-buttons"><button id="modal-cancel" class="btn outline">Cancel</button><button id="modal-ok" class="btn primary">Confirm</button></div></div></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
